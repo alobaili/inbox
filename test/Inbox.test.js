@@ -21,9 +21,15 @@ beforeEach(async () => {
 });
 
 describe('Inbox', () => {
+    // Test that the contract has been deployed successfully by
+    // checking if it has an address
     it('deploys a contract', () => {
-        // Test that the contract has been deployed successfully by
-        // checking if it has an address
         assert.ok(inbox.options.address);
+    });
+
+    // Test that the contract has an initial message set
+    it('has a default message', async () => {
+        const message = await inbox.methods.message().call();
+        assert.equal(message, 'Hi there!');
     });
 });
