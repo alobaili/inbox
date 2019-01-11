@@ -32,4 +32,15 @@ describe('Inbox', () => {
         const message = await inbox.methods.message().call();
         assert.equal(message, 'Hi there!');
     });
+
+    // Test that the initial message can be updated
+    it('can change the message', async () => {
+        
+        // Attempt to change the message
+        await inbox.methods.setMessage('bye').send({ from: accounts[0] });
+
+        // check that the message has been changed
+        const message = await inbox.methods.message().call();
+        assert.equal(message, 'bye');
+    });
 });
